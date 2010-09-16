@@ -1,0 +1,10 @@
+This was a simple little jQuery plugin that @nummi and I were
+messing around with. A global style observer pattern in the 
+event pooling style. What can I say, we were thinking about 
+how Cocoa does it and thought, why can't we do this in JavaScript.
+
+Sure... Bind is pretty similar but we wanted something to do. :) 
+
+Mess with it if you like. Enjoy! 
+
+--Leon Gersing and Jerry Nummi
