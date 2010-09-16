@@ -1,0 +1,39 @@
+<html>
+<head>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script> 
+  <script type="text/javascript" src="my_catchy_name.js"></script>
+  <script type="text/javascript"> 
+    (function($){
+      
+      var text_field_has_value = function(el,evt){
+        if(el.val().length == 0){
+          el.css({border:"2px solid red"}).after("FUCKING FILL IT IN!");
+          evt.preventDefault();
+        }
+      };
+
+      var last_valid = function(opts){
+        text_field_has_value(opts.sender.find("input[type=text]#last_name"),opts.event);
+      }
+      var first_valid = function(opts){
+        text_field_has_value(opts.sender.find("input[type=text]#first_name"),opts.event);
+      }
+
+      $.listen_for({message:"textFieldBlur", delegate:first_valid, scope:$("#first_name")});
+      $.listen_for({message:"submitInvoked", delegates:[first_valid, last_valid]});
+    })(jQuery);
+  </script>
+
+</head>
+<body>
+  <form id="my_form" action="#" method="GET">
+    <label for="first_name">First:</label>
+    <input type="text" name="first_name" id="first_name"><br>
+    <label for="last_name">Last:</label>
+    <input type="text" name="last_name" id="last_name"><br>
+    <input type="submit" value="update">
+  </form>
+
+  <div id="msg"></div>
+</body>
+</html>
