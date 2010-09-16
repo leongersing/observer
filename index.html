@@ -7,7 +7,7 @@
       
       var text_field_has_value = function(el,evt){
         if(el.val().length == 0){
-          el.css({border:"2px solid red"}).after("FUCKING FILL IT IN!");
+          el.css({border:"2px solid red"});
           evt.preventDefault();
         }
       };
@@ -19,7 +19,14 @@
         text_field_has_value(opts.sender.find("input[type=text]#first_name"),opts.event);
       }
 
-      $.listen_for({message:"textFieldBlur", delegate:first_valid, scope:$("#first_name")});
+      var not_empty = function(opts){
+        if(opts.data.length == 0) {
+          opts.sender.css({border:"2px solid red"});
+          opts.event.preventDefault();
+        }
+      }
+
+      $.listen_for({message:"textFieldBlur", delegate:not_empty, scope:"#first_name"});
       $.listen_for({message:"submitInvoked", delegates:[first_valid, last_valid]});
     })(jQuery);
   </script>

@@ -4,9 +4,10 @@
     listen_for: function(opts){ $.listeners.push(opts); },
     broadcast : function(opts){ 
       $.each($.listeners, function(i,o){
-        if(opts.message == o.message)
+        if(opts.message == o.message){
           if(o.delegate) o.delegate(opts);
           if(o.delegates) $.each(o.delegates, function(j,d){ d(opts); });
+        }
       });
     } 
   });
